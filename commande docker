@@ -1,0 +1,22 @@
+docker run -d --hostname gitlab-sunil.simplylearn.com -p 443:443 -p 80:80 -p 2222:22 --name gitlab-sunil --restart unless-stopped --volume $PWD/storage/gitlab/config:/etc/gitlab --volume $PWD/storage/gitlab/logs:/var/log/gitlab --volume $PWD/storage/gitlab/data:/var/opt/gitlab gitlab/gitlab-ce:latest
+
+
+
+docker run --rm -d --name mysql -e MYSQL_ROOT_PASSWORD="petclinic" -e MYSQL_DATABASE="petclinic" -e MYSQL_USER="petclinic"   -e MYSQL_PASSWORD="petclinic"  -v $PWD/mysql_volume:/var/lib/mysql   -p 3306:3306 mysql:8.0
+
+
+sudo apt-get install apt-transport-https ca-certificates  curl  software-properties-common  python3-pip virtualenv python3-setuptools gnupg-agent
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+sudo apt-key fingerprint 0EBFCD88
+
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+sudo apt-get update
+
+sudo apt-get install docker-ce
+
+docker -H localhost:2375 images
+export DOCKER_HOST=localhost:2375
+echo "export DOCKER_HOST=localhost:2375" >> ~/.bash_profile

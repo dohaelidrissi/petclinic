@@ -1,0 +1,38 @@
+node {
+   //agent any 
+  // stages {
+       stage('clone petclinic project '){
+		 //steps{
+              // checkout scm
+              git credentialsId: 'Gitlab_CredToken', url: 'http://192.168.10.10/bouchtateam/petclinic'
+		  // }
+        }
+    
+       stage(' build jar from petclinic project'){  
+	     //steps{
+              def mavenHOME = tool name: 'maven3', type: 'maven'
+              def mavenCMD = "${mavenHOME}/bin/mvn"
+              bat "${mavenCMD} clean package"
+         //}
+	   }
+	  
+       stage('build/push  petclinic docker image'){
+	    // steps{
+              docker.withRegistry('https://registry.hub.docker.com', 'Dockerid') {
+              def dockerimage = docker.build("bouchtateam/petclinicpipeline")
+              dockerimage.push()
+           //   }
+		 }
+       }
+	   
+	   stage ('doploy petclinic on docker containers '){
+	    // steps{
+               sshPublisher(publishers: [sshPublisherDesc(configName: 'vagrant_kmaster', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''docker stop mysql ;
+               docker run --rm -d --name mysql -v /opt/petclinic/mysql_volume:/var/lib/mysql   -p 3306:3306 bouchtateam/mysql_bouchta ;
+               docker  stop petclinic ;
+               docker run --rm -d -p 9090:8080 --name petclinic --link mysql:mysql  bouchtateam/petclinicpipeline ;
+               ''', execTimeout: 0, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+	     // }
+		}
+	//}
+}

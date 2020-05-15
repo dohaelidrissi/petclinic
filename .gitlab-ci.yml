@@ -10,17 +10,17 @@ build_docker_petclinic:
      stage: build
      script:
          
-       - docker login -u bouchtateam -p $pwdgitlab  registry.gitlab.com
-       - docker build -t $REGISTRY_IMAGE .
-       - docker push  $REGISTRY_IMAGE
+       - sudo docker login -u bouchtateam -p $pwdgitlab  registry.gitlab.com
+       - sudo docker build -t $REGISTRY_IMAGE .
+       - sudo docker push  $REGISTRY_IMAGE
      tags:
         - build
 run_docker_petclinic:
     stage: run
     script:
-         - docker login -u bouchtateam -p $pwdgitlab  registry.gitlab.com
-         - docker pull  $REGISTRY_IMAGE
-         - docker rm -f petclinic || true
-         - docker run -d -p 9090:8080 -name petclinic --link mysql:mysql $REGISTRY_IMAGE  
+         - sudo docker login -u bouchtateam -p $pwdgitlab  registry.gitlab.com
+         - sudo docker pull  $REGISTRY_IMAGE
+         - sudo docker rm -f petclinic || true
+         - sudo docker run -d -p 9090:8080 -name petclinic --link mysql:mysql $REGISTRY_IMAGE  
     tags:
      - run

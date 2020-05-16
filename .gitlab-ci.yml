@@ -19,7 +19,7 @@ build_docker_petclinic:
          
        -  docker login -u bouchtateam -p $pwdgitlab  registry.gitlab.com
        -  docker build -t $REGISTRY_IMAGE .
-       -  docker push  $REGISTRY_IMAGE
+      # -  docker push  $REGISTRY_IMAGE
      tags:
         - build
         

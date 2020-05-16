@@ -10,6 +10,8 @@ build_jar_petclinic:
      stage: mavenbuild
      script:
       - ./mvnw clean install package
+     tags:
+      - build
       
 build_docker_petclinic:
      stage: build

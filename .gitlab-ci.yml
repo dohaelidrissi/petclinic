@@ -6,6 +6,11 @@ stages:
    - build
    - run
 
+cache:
+  paths:
+    - .m2/repository/
+    - target/
+
 build_jar_petclinic:
      stage: mavenbuild
      script:

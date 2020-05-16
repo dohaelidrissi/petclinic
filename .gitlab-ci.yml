@@ -14,7 +14,7 @@ cache:
 build_jar_petclinic:
      stage: mavenbuild
      script:
-      - mvn clean install package
+      - mvn install package
      tags:
       - build
       

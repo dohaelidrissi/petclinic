@@ -6,12 +6,12 @@ stages:
    - build
    - run
 
-# build_jar_petclinic:
-#      stage: mavenbuild
-#      script:
-#       - mvn install package
-#      tags:
-#       - build
+build_jar_petclinic:
+     stage: mavenbuild
+     script:
+      - mvn install package
+     tags:
+      - build
       
 build_docker_petclinic:
      stage: build

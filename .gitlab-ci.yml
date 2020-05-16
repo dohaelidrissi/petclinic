@@ -9,7 +9,7 @@ stages:
 build_jar_petclinic:
      stage: mavenbuild
      script:
-      - mvnw install package
+      - mvn install package
      tags:
       - build
       

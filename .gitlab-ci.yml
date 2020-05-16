@@ -9,7 +9,7 @@ stages:
 build_jar_petclinic:
      stage: mavenbuild
      script:
-      - ./mvnw clean install package
+      - sudo ./mvnw clean install package
      tags:
       - build
       

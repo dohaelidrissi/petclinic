@@ -2,10 +2,15 @@ variables:
    REGISTRY_IMAGE: registry.gitlab.com/bouchtateam/petclinic:$CI_COMMIT_REF_NAME
 
 stages:
+   - mavenbuild
    - build
    - run
 
-
+build_jar_petclinic:
+     stage: mavenbuild
+     script:
+      - ./mvnw clean install package
+      
 build_docker_petclinic:
      stage: build
      script:

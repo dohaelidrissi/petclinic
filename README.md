@@ -4,7 +4,7 @@ docker run --rm -d --name mysql \
     -e MYSQL_DATABASE="petclinic" \
     -e MYSQL_USER="petclinic" \
     -e MYSQL_PASSWORD="petclinic" \
-    -v /data/atk-projet-demo/mysql:/var/lib/mysql \
+    -v $PWD/mysql:/var/lib/mysql \
     -p 3306:3306 mysql:latest
 ## -2- paacage the project 
 .\mvn package  // OR in windows os use this command : .\mvncmd package 

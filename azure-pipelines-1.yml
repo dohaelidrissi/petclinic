@@ -29,4 +29,10 @@ stages:
         command: build
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: '$(tag)'
+    - task: Docker@2
+      inputs:
+            containerRegistry: 'docker'
+            repository: 'dohaeli13 / projetpfa'
+            command: 'buildAndPush'
+            Dockerfile: '**/Dockerfile'
 

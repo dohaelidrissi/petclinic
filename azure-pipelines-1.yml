@@ -13,6 +13,15 @@ variables:
   
 
 stages:
+- stage: Compile
+  displayName: 'Compile Stage'
+
+  displayName: 'Build and Compile'
+  steps:
+  - script: powershell mvn compile
+- stage: Test
+  displayName: 'Test Stage'
+  dependsOn: Compile
 - stage: Build
   displayName: Build image
   jobs:

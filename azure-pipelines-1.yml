@@ -11,7 +11,6 @@ resources:
 variables:
   tag: '$(Build.BuildId)'
   MAVEN_CACHE_FOLDER: '$(Pipeline.Workspace)/.m2/repository'
-  TARGET: '$(Pipeline.Workspace)/target/*'
   MAVEN_OPTS: '-Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)'
 
 stages:
@@ -31,7 +30,7 @@ stages:
         restoreKeys: |
           maven | "$(Agent.OS)"
           maven
-        path: $(TARGET)
+        path: $(MAVEN_CACHE_FOLDER)
       displayName: Cache Maven local repo
 
     - task: Docker@2

@@ -30,7 +30,7 @@ stages:
         restoreKeys: |
           maven | "$(Agent.OS)"
           maven
-        path: $(MAVEN_CACHE_FOLDER) | $(TARGET)
+        path: $(TARGET)
       displayName: Cache Maven local repo
 
     - task: Docker@2

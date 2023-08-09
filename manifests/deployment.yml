@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: dohaelidrissipetclinic 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dohaelidrissipetclinic
+  template:
+    metadata:
+      labels:
+        app: dohaelidrissipetclinic 
+    spec:
+      containers:
+        - name: dohaelidrissipetclinic 
+          image: petclinicregistredoha.azurecr.io/dohaelidrissipetclinic
+          ports:
+          - containerPort: 8080
